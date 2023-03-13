@@ -10,6 +10,7 @@ const [apellido,setApellido] = useState('');
 const [numero,setNumero] = useState('');
 const [correo,setCorreo] = useState('');
 const [error, setError] = useState(false);
+// const [actualizado, setActualizado] = useState(false);
 
 useEffect(() => {
   if(Object.keys(paciente).length >0 ){
@@ -47,11 +48,15 @@ const manejadorSubmit = (e) => {
     nombre, apellido, numero, correo
   }
 
+
+  
   //para modificar y se guarde
   if(paciente.id){
     objetoPaciente.id = paciente.id;
     const pacientesActualizados = pacientes.map( pacienteState => pacienteState.id === paciente.id ? objetoPaciente : pacienteState)
     setPacientes(pacientesActualizados);
+    // setActualizado(true)
+    paciente.id = false;
   }else{
     objetoPaciente.id = generarID();
     setPacientes([...pacientes, objetoPaciente])
@@ -111,11 +116,31 @@ const limpiar = () =>{
           <div>
             <input 
             type="submit" 
-            className='mt-6 w-full rounded-md uppercase bg-slate-400 p-2 hover:bg-slate-500 cursor-pointer' 
-            value={paciente.id ? 'Actualizar Paciente' : 'Agregar Estidiante'}/>
+            className='mt-6 w-full rounded-md uppercase bg-slate-400 p-2 hover:bg-slate-500 cursor-pointer'
+             
+            value={paciente.id ? 'Actualizar paciente': 'Agregar Paciente'}
+            // onClick={() => {setActualizado(false)}} 
+            
+            />
+
+            
             
           </div>
         </form>
+          {/* <div>
+
+          
+             <button
+               className='mt-2 w-full rounded-md uppercase bg-red-500 p-2 hover:bg-red-600 cursor-pointer'
+               onClick={() => {
+                setPaciente({});
+                limpiar();
+           }}
+            >
+             Limpiar
+            </button>
+  
+          </div> */}
     </div>
 
   )

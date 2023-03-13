@@ -1,8 +1,10 @@
 import React from 'react'
 import Paciente from './Paciente'
 
-const Listado = ({pacientes,setPaciente}) => {
+const Listado = ({pacientes,setPaciente, eliminarPaciente}) => {
   
+ 
+
   return (
     <div className='p-[20px] md:w-1/2 lg:w-3/5 bg-slate-600 rounded-md text-white md:overflow-y-scroll h-screen'>
         <h1 className='text-center font-bold text-2xl'>Listado de pacientes</h1>
@@ -12,12 +14,13 @@ const Listado = ({pacientes,setPaciente}) => {
            <Paciente 
            key={paciente.id}
            paciente={paciente}
+           eliminarPaciente={eliminarPaciente}
            setPaciente={setPaciente}
            />
 
         )}
 
-        
+
         
 
 
